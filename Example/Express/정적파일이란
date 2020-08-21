@@ -1,0 +1,4 @@
+정적파일
+- HTML에서 사용되는 .js 파일, css 파일, image 파일 등을 뜻 함.
+- 서버에서 정적파일을 다루기 위해서는 express.static() 메소드를 사용해야한다.
+- public/css 디렉토리를 만들고 그 안에 style.css 파일을 생성.
