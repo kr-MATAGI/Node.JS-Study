@@ -1,0 +1,37 @@
+GULP
+- Java Script 빌드 자동화 툴
+- whitespace, newline 과 같이 없어도 지장이 되지 않는 문자들을 제거함으로서 
+  페이지 렌더링 성능도 (비록 큰 차이는 아니지만) 를 늘리고 트래픽도 많이 아낄 수 있다.
+- file minification 작업을 js 와 css를 수정 할 때마다 수동으로 실행해야 한다면.. 귀찮겠죠? 
+  다른 귀찮음의 예로는, Node.js 프로젝트를 작성하면서 .js 파일을 수정 할 때마다 서버를 재시작 해야하지 않았나요?
+  개발자들의 이런 귀차니즘을 해결하기 위한 도구가 바로 gulp.js 이랍니다. 위에 설명 된 것 외에도 많은 작업들을 다 자동으로 해주지요.
+
+
+
+gul에는 4가지의 주요한 API가 있다.
+    1) gulp.task(name [, deps, fn])
+      - gulp가 처리할 작업을 정의.
+      - name은 String 형태. task의 이름을 지정
+      - deps와 fn은 optional 인수 (생략 가능)
+      - deps는 task name의 배열 형태이며 이 인수가 전달 될 시, 이 배열 안에 있는 task들을 먼저 실행한 다음
+        함수 형태로 전달되는 fn을 실행.
+      - glup [name] 으로 task 내의 이름으로 실행 가능 (name을 명시하지 않으면 default task가 실행됨)
+
+    2) gulp.src(globs[, options])
+      - 어떤 파일을 읽을지 결정.
+      - 인수 globl 은 Sstring 형태나 array 형태이다.
+      - options 는 Object 형태, node-glob에 전달할 옵션
+      - 이 함수가 리턴한 객체에서는 .pipe를 이용하여 다른 플러그인을 사용해 변환할 수 있음.
+    
+    3) gulp.dest(path[, options])
+      - 어디에 저장할지 정한다.
+      - path는 디렉토리를 입력
+      - options는 객체로써 { cwd:___, mode:___} 의 형태.
+      - cwd 는 현재 디렉토리 위치로써 .path가 /build/ 이런식으로 상대적일 때 현재 디렉토리를 따로 설장하고 싶을 때 사용.
+      - mode 는 파일권한 (기본 : 0777).
+
+    4) gulp.watch(glob[, opts], tasks/cb)
+      - 전달된 glob에 해당하는 파일들을 주시하고 있다가 변동이 있을시 tasks를 실행한다.
+      - tasks 는 task name의 배열형태.
+        배열 형태가 아닐 때는 event를 파라미터로 가지고 있는 콜백함수 cb를 작성.
+      - opts는 gulp에서 사용하는 라이브러리인 gaze에 전달할 옵션
