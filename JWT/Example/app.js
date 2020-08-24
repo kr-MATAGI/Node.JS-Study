@@ -51,7 +51,7 @@ db.once('open', function() {
     // Connected to mongoDB server
     console.log("Connected to mongoDB server !");
 });
-mongoose.connect('mongodb://localhost/mongodb').then( function(){
+mongoose.connect('mongodb://localhost/mongodb2').then( function(){
     console.log("Connected !");
 }).catch((err) => {
     console.log("Not Connected db : " + err);
